@@ -40,7 +40,7 @@ export default function App() {
     { id: 2, url: "https://i.ibb.co/JCvvdn9/rolex.jpg", radius: radiusDemo },
     { id: 3, url: "/files/store.jpg", radius: radiusDemo },
   ]);
-  const [mysceneIndex, setMysceneIndex] = useState(1);
+  const [mysceneIndex, setMysceneIndex] = useState(0);
   const [listHotspotOfRoom] = useState(hotspot);
   const [listVideo] = useState<Array<ModelVideo>>(videos);
   const [product, setProduct] = useState<ModelProcduct>();
@@ -48,14 +48,14 @@ export default function App() {
   const [listPictureOfRoom] = useState<Array<ModelPicture>>(productPicture);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2D, setIsModalOpen2D] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [started, setStarted] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [started, setStarted] = useState(false);
+  const [isModalOpenMap, setIsModalOpenMap] = useState(true);
+  const [isModalOpenVideo, setIsModalOpenVideo] = useState(false);
+  const [video, setVideo] = useState<ModelVideo>();
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const [isModalOpenMap, setIsModalOpenMap] = useState(false);
-  const [isModalOpenVideo, setIsModalOpenVideo] = useState(false);
-  const [video, setVideo] = useState<ModelVideo>();
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
