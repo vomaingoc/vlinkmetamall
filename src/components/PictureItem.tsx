@@ -62,10 +62,11 @@ const PictureItem = (props: any) => {
         <Html center>
           <Button
             shape="circle"
-            className="icon-product2"
+            className="icon-product2 icon-product2-2"
             onClick={onClick}
             data-name={name}
             type="text"
+            style={{ position: "relative", top: newSize[1] * 0.7 * -1 }}
           >
             <div className="dot">
               <PlusOutlined />

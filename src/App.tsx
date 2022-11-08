@@ -40,7 +40,7 @@ export default function App() {
     { id: 2, url: "https://i.ibb.co/JCvvdn9/rolex.jpg", radius: radiusDemo },
     { id: 3, url: "/files/store.jpg", radius: radiusDemo },
   ]);
-  const [mysceneIndex, setMysceneIndex] = useState(2);
+  const [mysceneIndex, setMysceneIndex] = useState(1);
   const [listHotspotOfRoom] = useState(hotspot);
   const [listVideo] = useState<Array<ModelVideo>>(videos);
   const [product, setProduct] = useState<ModelProcduct>();

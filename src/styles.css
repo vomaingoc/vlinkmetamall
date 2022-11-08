@@ -63,33 +63,13 @@ body,
 .icon-hotspot:hover {
   transform: rotate3d(4, 0, 0, 70deg) scale(1.4);
 }
-.icon-product {
-  /* width: 24px;
-  height: 24px;
-  display: inline-block;
-  cursor: pointer;
-  background-color: white;
-  border-radius: 100px;
-  z-index: 1;
-  border: 1px solid #fff;
-  border-radius: 100px; */
-}
 .icon-product2 {
   border-color: red;
   border-width: 2px;
   color: red;
 }
-.icon-product::before {
-  /* content: "";
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  transform: translateX(-50%) translateY(-50%);
-  position: absolute;
-  border: 1px solid #fff;
-  background-color: black;
-  border-radius: 100px;
-  z-index: 1; */
+.icon-product2-2 {
+  left: -10px;
 }
 .icon-product:hover {
   box-shadow: 0 0 10px 0 red inset, 0 0 20px 2px red;
