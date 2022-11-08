@@ -10,18 +10,16 @@ export default function Slide360View(props: any) {
     height,
   } = props;
   return (
-    <div className="App">
-      <React360Viewer
-        imagesBaseUrl={url}
-        imagesCount={amount}
-        imagesFiletype={type}
-        mouseDragSpeed={amount / 3}
-        width={width}
-        height={height}
-        imageFilenamePrefix={imageFilenamePrefix}
-        imageInitialIndex={imageInitialIndex}
-        showRotationIconOnStartup={true}
-      />
-    </div>
+    <React360Viewer
+      imagesBaseUrl={url}
+      imagesCount={amount}
+      imagesFiletype={type}
+      mouseDragSpeed={amount / 3}
+      width={width}
+      height={height}
+      imageFilenamePrefix={imageFilenamePrefix}
+      imageInitialIndex={imageInitialIndex}
+      showRotationIconOnStartup={true}
+    />
   );
 }

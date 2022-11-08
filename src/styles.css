@@ -110,7 +110,6 @@ body,
 }
 
 .content-view .slider {
-  /* position: absolute; */
   top: 0;
   left: 0;
   right: 0;
@@ -119,11 +118,8 @@ body,
   text-align: center;
 }
 
-.content-view .slider .App {
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: relative;
+.content-view .slider svg {
+  width: 7em;
 }
 .content-view .slider img {
   margin: auto;

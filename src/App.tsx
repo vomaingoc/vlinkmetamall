@@ -4,8 +4,8 @@ import React, {
   useLayoutEffect,
   useRef,
   useState,
+  lazy,
 } from "react";
-import { lazy } from "react";
 import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import LayoutThree from "./components/LayoutThree";
@@ -19,11 +19,12 @@ import { Button, Col, Modal, Row, InputNumber, Tag, Image } from "antd";
 import Footer from "components/Footer";
 import Loading from "components/Loading";
 import { gsap } from "gsap";
-import { products, hotspot, videos } from "data";
-import { ModelProcduct, ModelVideo } from "models";
+import { products, hotspot, videos, productPicture } from "data";
+import { ModelPicture, ModelProcduct, ModelVideo } from "models";
 import ListVideo from "components/Videos";
 const Banner = lazy(() => import("components/Banner"));
 import VideoThree from "components/VideoThree";
+import ListPicture from "components/PictureItem";
 interface ModelScene {
   id: number;
   url: string;
@@ -31,24 +32,28 @@ interface ModelScene {
 }
 
 export default function App() {
+  const dev = 1;
+  const radiusDemo = dev ? 480 : 500;
+
   const [listSceneOfRoom] = useState<Array<ModelScene>>([
-    { id: 1, url: "https://i.ibb.co/GVcDGWC/sanh.jpg", radius: 500 },
-    { id: 2, url: "https://i.ibb.co/JCvvdn9/rolex.jpg", radius: 500 },
-    { id: 3, url: "/files/store.jpg", radius: 500 },
+    { id: 1, url: "https://i.ibb.co/GVcDGWC/sanh.jpg", radius: radiusDemo },
+    { id: 2, url: "https://i.ibb.co/JCvvdn9/rolex.jpg", radius: radiusDemo },
+    { id: 3, url: "/files/store.jpg", radius: radiusDemo },
   ]);
-  const [mysceneIndex, setMysceneIndex] = useState(0);
+  const [mysceneIndex, setMysceneIndex] = useState(2);
   const [listHotspotOfRoom] = useState(hotspot);
   const [listVideo] = useState<Array<ModelVideo>>(videos);
   const [product, setProduct] = useState<ModelProcduct>();
   const [listProduct] = useState<Array<ModelProcduct>>(products);
+  const [listPictureOfRoom] = useState<Array<ModelPicture>>(productPicture);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2D, setIsModalOpen2D] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [started, setStarted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [started, setStarted] = useState(true);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const [isModalOpenMap, setIsModalOpenMap] = useState(true);
+  const [isModalOpenMap, setIsModalOpenMap] = useState(false);
   const [isModalOpenVideo, setIsModalOpenVideo] = useState(false);
   const [video, setVideo] = useState<ModelVideo>();
   useEffect(() => {
@@ -76,7 +81,10 @@ export default function App() {
       setIsModalOpen2D(true);
     }
   };
-
+  function handlePictureClick(id: number, index: number) {
+    console.log("picture customer id", id);
+    console.log("picture customer index", index);
+  }
   const handleVideoClick = (video: ModelVideo) => {
     setVideo(video);
     setIsModalOpenVideo(true);
@@ -102,15 +110,21 @@ export default function App() {
           data={listHotspotOfRoom}
           onClick={handleHotspotClick}
         />
+        <ListVideo
+          sceneId={listSceneOfRoom[mysceneIndex].id}
+          data={listVideo}
+          onClick={handleVideoClick}
+        />
         <ListProduct
           sceneId={listSceneOfRoom[mysceneIndex].id}
           data={listProduct}
           onClick={handleProductClick}
         />
-        <ListVideo
+
+        <ListPicture
           sceneId={listSceneOfRoom[mysceneIndex].id}
-          data={listVideo}
-          onClick={handleVideoClick}
+          data={listPictureOfRoom}
+          onClick={handleProductClick}
         />
       </group>
     );
@@ -192,6 +206,7 @@ export default function App() {
               footer={null}
               centered={true}
               width={1000}
+              destroyOnClose
             >
               <Row gutter={24}>
                 <Col span={14}>
@@ -290,6 +305,7 @@ export default function App() {
               footer={null}
               centered={true}
               width={1000}
+              destroyOnClose
             >
               <Row gutter={24}>
                 <Col span={14}>
@@ -380,6 +396,7 @@ export default function App() {
               className="ant-modal-map"
               wrapClassName="ant-modal-map"
               focusTriggerAfterClose={false}
+              destroyOnClose
             >
               <h2 className="h2map">{pointName}</h2>
               <div ref={boxRefMap}>

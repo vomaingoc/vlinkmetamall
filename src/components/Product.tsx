@@ -21,13 +21,11 @@ export const ProductItem = ({
   position,
   onClick,
   id,
-  imagePath,
 }: {
   name: string;
   position: any;
   onClick: any;
   id: number;
-  imagePath: string;
 }) => {
   return (
     <group dispose={null} position={position} onClick={onClick}>
@@ -39,7 +37,6 @@ export const ProductItem = ({
           id={`${id}`}
           data-name={name}
           type="text"
-          // icon={<PlusOutlined />}
         >
           <div className="dot">
             <PlusOutlined />
@@ -69,7 +66,6 @@ const ListProduct = ({
               name={item.name}
               position={item.position}
               onClick={() => onClick(item)}
-              imagePath={item.imagePath}
             />
           )
       )}

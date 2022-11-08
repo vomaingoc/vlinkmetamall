@@ -20,3 +20,11 @@ export interface ModelProcduct {
   height: number;
   type: string;
 }
+export interface ModelPicture extends ModelProcduct {
+  size: any;
+  scale: number;
+  depth: number;
+  border_width: number;
+  border_color_hex: string;
+  rotation_y: number;
+}
