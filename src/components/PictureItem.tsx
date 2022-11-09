@@ -38,7 +38,7 @@ const PictureItem = (props: any) => {
         <meshStandardMaterial
           attach="material"
           color={initColorCode}
-          opacity={0.1}
+          opacity={0}
           transparent
         />
       </mesh>

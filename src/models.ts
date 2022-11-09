@@ -19,6 +19,11 @@ export interface ModelProcduct {
   width: number;
   height: number;
   type: string;
+  price1?: number;
+  price2?: number;
+  quantity?: number;
+  vlg?: number;
+  desc?: string;
 }
 export interface ModelPicture extends ModelProcduct {
   size: any;

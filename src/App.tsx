@@ -39,7 +39,7 @@ interface ModelScene {
 }
 
 export default function App() {
-  const dev = 1;
+  const dev = 0;
   const radiusDemo = dev ? 480 : 500;
 
   const [listSceneOfRoom] = useState<Array<ModelScene>>([
@@ -347,12 +347,19 @@ export default function App() {
                 </Col>
                 <Col md={10} sm={24} xs={24}>
                   <h1 className="name">{product?.name}</h1>
-                  <p className="number">(Quantity 10 slots)</p>
-                  <p className="price1">Price $898.75</p>
+                  <p className="number">
+                    (Quantity {product?.quantity ? product?.quantity : 10}{" "}
+                    slots)
+                  </p>
+                  <p className="price1">
+                    Price ${product?.price1 ? product?.price1 : 898.75}
+                  </p>
 
                   <Row gutter={16}>
                     <Col>
-                      <p className="price2">Sales $719</p>
+                      <p className="price2">
+                        Sales ${product?.price2 ? product?.price2 : 719}
+                      </p>
                     </Col>
                     <Col>
                       <Tag
@@ -365,16 +372,23 @@ export default function App() {
                   </Row>
 
                   <div className="desc">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
+                    {product?.desc ? (
+                      product?.desc
+                    ) : (
+                      <>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book. It has
+                        survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged.
+                        It was popularised in the 1960s with the release of
+                        Letraset sheets containing Lorem Ipsum passages, and
+                        more recently with desktop publishing software like
+                        Aldus PageMaker including versions of Lorem Ipsum.
+                      </>
+                    )}
                   </div>
                   <Row gutter={6} className="row1">
                     <Col>
@@ -412,7 +426,10 @@ export default function App() {
                       </Button>
                     </Col>
                     <Col>
-                      <div className="vlg">Requested amount : 50 VLG</div>
+                      <div className="vlg">
+                        Requested amount : {product?.vlg ? product?.vlg : 50}{" "}
+                        VLG
+                      </div>
                     </Col>
                   </Row>
                 </Col>
