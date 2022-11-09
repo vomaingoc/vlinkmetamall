@@ -8,8 +8,9 @@ import {
 import { useState } from "react";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
+import Sound from "components/Sound";
 export default function Footer(props: any) {
-  const { onMenuClick, loading } = props;
+  const { onMenuClick, loading, started, isModalOpenVideo } = props;
   const [showCart, setShowCart] = useState(false);
   const handleClickShowCart = () => {
     setShowCart((prev) => !prev);
@@ -20,7 +21,7 @@ export default function Footer(props: any) {
   const myRef = useRef(null);
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      if (loading) {
+      if (!loading) {
         gsap.from(".row1", {
           bottom: -300,
           opacity: 0.6,
@@ -56,6 +57,13 @@ export default function Footer(props: any) {
         <Col>
           <div className="tool-right">
             <Row gutter={24}>
+              <Col>
+                <Sound
+                  started={started}
+                  loading={loading}
+                  isModalOpenVideo={isModalOpenVideo}
+                />
+              </Col>
               <Col>
                 <Button
                   style={{
@@ -103,6 +111,7 @@ export default function Footer(props: any) {
                   <UserOutlined />
                 </Button>
               </Col>
+
               {showCart && (
                 <Col>
                   <Button

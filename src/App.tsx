@@ -88,10 +88,7 @@ export default function App() {
       setIsModalOpen2D(true);
     }
   };
-  function handlePictureClick(id: number, index: number) {
-    console.log("picture customer id", id);
-    console.log("picture customer index", index);
-  }
+
   const handleVideoClick = (video: ModelVideo) => {
     setVideo(video);
     setIsModalOpenVideo(true);
@@ -219,7 +216,7 @@ export default function App() {
         {!started && !loading && (
           <Banner onStart={handleStart} loading={!loading} />
         )}
-        {!loading && started && (
+        {started && (
           <>
             <div className="banner">
               <div className="images">
@@ -668,7 +665,12 @@ export default function App() {
                 )}
               </div>
             </Modal>
-            <Footer loading={!loading} onMenuClick={handleMenuClick} />
+            <Footer
+              loading={loading}
+              started={started}
+              onMenuClick={handleMenuClick}
+              isModalOpenVideo={isModalOpenVideo}
+            />
             <ModalPaymentCreditCard
               isVisible={isVisibleModalCreditCard}
               onChange={handleChangeModalCreditCard}

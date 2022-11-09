@@ -9,7 +9,7 @@ body,
 .capture-button {
   z-index: 100001;
   position: fixed;
-  bottom: 16px;
+  top: 16px;
   left: 16px;
   display: flex;
   justify-content: center;
@@ -26,7 +26,6 @@ body,
   background-image: url("files/camera.png");
   background-position: center center;
   background-size: 100% 100%;
-  display: none;
 }
 #canvas2 {
   position: fixed;
@@ -43,17 +42,17 @@ body,
   height: 100%;
 }
 .icon-hotspot {
-  width: 60px !important;
+  width: 90px !important;
   height: 90px !important;
   display: inline-block;
-  background-image: url("./files/up.png");
+  background-image: url("./files/vtourskin_hotspot.png");
   padding-top: 26px;
   color: #fff;
   font-weight: bold;
   text-align: center;
   background-repeat: no-repeat;
   background-size: contain;
-  transform: rotate3d(4, 0, 0, 70deg);
+  transform: rotate3d(4, 0, 0, 50deg);
   background-color: transparent;
   border: 0;
   padding: 60px 0;
@@ -61,7 +60,7 @@ body,
   transition: all 0.3s;
 }
 .icon-hotspot:hover {
-  transform: rotate3d(4, 0, 0, 70deg) scale(1.4);
+  transform: rotate3d(4, 0, 0, 50deg) scale(1.4);
 }
 .icon-product2 {
   border-color: red;
@@ -717,4 +716,8 @@ h1.purple {
   bottom: 0;
   width: 100% !important;
   height: 100% !important;
+}
+.tool-right .ant-badge .ant-badge-count {
+  color: #000e4b;
+  top: 12px;
 }
