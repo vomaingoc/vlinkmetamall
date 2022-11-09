@@ -137,17 +137,19 @@ export default function App() {
   const boxRefMap = useRef(null);
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.from(".box", {
-        y: -250,
-        rotationY: 50,
-        rotationX: 20,
-        duration: 1.5,
-        opacity: 0,
-      });
+      if (started) {
+        gsap.from(".box", {
+          y: -250,
+          rotationY: 50,
+          rotationX: 20,
+          duration: 1.5,
+          opacity: 0,
+        });
+      }
     }, boxRefMap);
 
     return () => ctx.revert();
-  }, [isModalOpenMap, loading]);
+  }, [isModalOpenMap, started]);
 
   const handleMenuClick = (e: string) => {
     if (e === "MAP") {
@@ -198,6 +200,8 @@ export default function App() {
     setIsVisibleModalCreditCard(e.target.visible);
   };
   const handleShowModalCreditCard = () => {
+    setIsModalOpen2D(false);
+    setIsModalOpen(false);
     setIsVisibleModalCreditCard(true);
   };
 
@@ -312,6 +316,7 @@ export default function App() {
                           marginTop: 24,
                           borderRadius: 8,
                         }}
+                        onClick={handleShowModalCreditCard}
                       >
                         Order now
                       </Button>
@@ -401,6 +406,7 @@ export default function App() {
                           marginTop: 24,
                           borderRadius: 8,
                         }}
+                        onClick={handleShowModalCreditCard}
                       >
                         Order now
                       </Button>

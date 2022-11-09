@@ -124,7 +124,7 @@ export const hotspot = [
   {
     id: 3,
     name: "Sanh to Shose Store",
-    position: [224.6786007485806, -98.88119620346073, -435.18790713628823],
+    position: [180.81810428178397, -115.536401696913, -428.5701699887793],
     sceneId: 1,
     linkToSceneId: 3,
   },

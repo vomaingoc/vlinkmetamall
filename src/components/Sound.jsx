@@ -2,46 +2,53 @@ import * as THREE from "three";
 import React, { useRef, useEffect, useState } from "react";
 import { useThree, useLoader } from "@react-three/fiber";
 import { Button, Col, Row, Image, Badge } from "antd";
-function Sound(props: any) {
-  // const sound = useRef(null);
-  const { loading, started, isModalOpenVideo } = props;
-  // const { camera } = useThree();
-  // const [listener] = useState(() => new THREE.AudioListener());
-  // const buffer = useLoader(THREE.AudioLoader, url);
-  // useEffect(() => {
-  //   sound.current.setBuffer(buffer);
-  //   sound.current.setRefDistance(1);
-  //   sound.current.setLoop(true);
-  //   sound.current.play();
-  //   camera.add(listener);
-  //   return () => camera.remove(listener);
-  // }, []);
-  // return <positionalAudio ref={sound} args={[listener]} />;
+let visibilityChange = null;
+let hidden = null;
+if (typeof document.hidden !== "undefined") {
+  hidden = "hidden";
+  visibilityChange = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+  visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+  visibilityChange = "webkitvisibilitychange";
+}
+
+function Sound(props) {
+  const { isModalOpenVideo } = props;
+
   const [play, setPlay] = useState(false);
   const [audio, setAudio] = useState(new Audio("/files/dior-vibe-music.mp3"));
   const playPause = () => {
-    // Get state of song
-    let isPlaying = play;
-
-    if (isPlaying) {
-      // Pause the song if it is playing
+    if (play) {
       audio.pause();
     } else {
-      // Play the song if it is paused
       audio.play();
     }
-
-    // Change the state of song
     setPlay((prev) => !prev);
   };
+
   useEffect(() => {
-    console.log(loading);
     if (isModalOpenVideo) {
       audio.pause();
       setPlay(false);
     }
   }, [isModalOpenVideo]);
 
+  useEffect(() => {
+    document.addEventListener(visibilityChange, handleVisibilityChange);
+    return () => {
+      document.removeEventListener(visibilityChange, handleVisibilityChange);
+    };
+  }, [visibilityChange, hidden]);
+
+  function handleVisibilityChange() {
+    if (document[hidden]) {
+      audio.pause();
+      setPlay(false);
+    }
+  }
   return (
     <>
       <Button
