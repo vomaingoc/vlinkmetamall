@@ -1,4 +1,4 @@
-import { LoadingOutlined } from "@ant-design/icons";
+
 import { Spin, Image } from "antd";
 import React from "react";
 import { gsap } from "gsap";
@@ -14,7 +14,7 @@ export default function Banner(props: any) {
           opacity: 0.6,
           duration: 1,
         });
-        gsap.from(".videobanner", {
+        gsap.from(".video", {
           opacity: 0.6,
         });
       } else {
@@ -30,7 +30,16 @@ export default function Banner(props: any) {
   return (
     <>
       <div className="hero" ref={myRef}>
-        <iframe
+        {/* <div className="logo-site">
+          <Image
+            src="/files/logo.png"
+            alt=""
+            preview={false}
+            width={250}
+            style={{ marginBottom: 24 }}
+          />
+        </div> */}
+        {/* <iframe
           width="800"
           height="450"
           src="https://www.youtube.com/embed/_jd4Qa9ZNLs?autoplay=1&mute=1"
@@ -39,8 +48,10 @@ export default function Banner(props: any) {
           allow="accelerometer; autoplay; clipboard-write; muted; encrypted-media; gyroscope; picture-in-picture;loop;"
           allowFullScreen
           id="videobanner"
-          className="videobanner"
-        />
+        /> */}
+        <video autoPlay loop muted id="video" className="video" controls>
+          <source src={"/files/video.mp4"} type="video/mp4" />
+        </video>
         <div className="overlay">
           <h2 className="purple s1">Welcome to</h2>
           <h1 className="purple h1">VLINKMETA MALL</h1>

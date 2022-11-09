@@ -10,9 +10,7 @@ import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
 import LayoutThree from "./components/LayoutThree";
 import Hotspot from "./components/Hotspot";
-const SceneItem = lazy(() => import("./components/Scene"));
 // import Sound from "./Sound";
-const Slide360View = lazy(() => import("components/Slide360View"));
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import ListProduct from "./components/Product";
 import { Button, Col, Modal, Row, InputNumber, Tag, Image } from "antd";
@@ -27,11 +25,14 @@ import {
   ModelVideo,
 } from "models";
 import ListVideo from "components/Videos";
-const Banner = lazy(() => import("components/Banner"));
 import VideoThree from "components/VideoThree";
 import ListPicture from "components/PictureItem";
 import ModalPaymentCreditCard from "components/ModalPaymentCreditCard";
 import ModalLogin from "components/ModalLogin";
+import { PushpinOutlined } from "@ant-design/icons";
+const SceneItem = lazy(() => import("./components/Scene"));
+const Slide360View = lazy(() => import("components/Slide360View"));
+const Banner = lazy(() => import("components/Banner"));
 interface ModelScene {
   id: number;
   url: string;
@@ -39,7 +40,7 @@ interface ModelScene {
 }
 
 export default function App() {
-  const dev = 0;
+  const dev = 1;
   const radiusDemo = dev ? 480 : 500;
 
   const [listSceneOfRoom] = useState<Array<ModelScene>>([
@@ -52,12 +53,13 @@ export default function App() {
   const [listVideo] = useState<Array<ModelVideo>>(videos);
   const [product, setProduct] = useState<ModelProcduct>();
   const [listProduct] = useState<Array<ModelProcduct>>(products);
+  const [listCart, setListCart] = useState<Array<ModelProcduct>>([]);
   const [listPictureOfRoom] = useState<Array<ModelPicture>>(productPicture);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen2D, setIsModalOpen2D] = useState(false);
   const [loading, setLoading] = useState(true);
   const [started, setStarted] = useState(false);
-  const [isModalOpenMap, setIsModalOpenMap] = useState(true);
+  const [isModalOpenMap, setIsModalOpenMap] = useState(false);
   const [isModalOpenVideo, setIsModalOpenVideo] = useState(false);
   const [video, setVideo] = useState<ModelVideo>();
   const showModal = () => {
@@ -167,12 +169,14 @@ export default function App() {
   const handleCancelModalVideo = () => {
     setIsModalOpenVideo(false);
   };
-  const [pointName, setPointName] = useState("_");
-  const handleClickPointMap = (sceneId: number) => {
+  const [pointName, setPointName] = useState("Lobby");
+  const [currentMapPoint, setCurrentMapPoint] = useState("Lobby");
+  const handleClickPointMap = (sceneId: number, name: string) => {
     callLoading();
     const index = listSceneOfRoom.findIndex((x) => x.id === sceneId);
     setMysceneIndex(index);
     setIsModalOpenMap(false);
+    setCurrentMapPoint(name);
   };
   const handleHoverPointMap = (e: string) => {
     if (e) setPointName(e);
@@ -213,9 +217,16 @@ export default function App() {
     setIsVisibleModalLogin(true);
   };
   const handlePaymentByCreditCard = (values: ModelCreditCard) => {};
+  const addToCart = () => {
+    setIsShowCart(true);
+    setIsModalOpen2D(false);
+    setIsModalOpen(false);
+    const newState: any = [...listCart, product];
+    setListCart(newState);
+  };
+  const [isShowCart, setIsShowCart] = useState(false);
   return (
     <>
-      {/* <VideoThree /> */}
       <Suspense fallback={null}>
         {!started && !loading && (
           <Banner onStart={handleStart} loading={!loading} />
@@ -316,9 +327,9 @@ export default function App() {
                           marginTop: 24,
                           borderRadius: 8,
                         }}
-                        onClick={handleShowModalCreditCard}
+                        onClick={addToCart}
                       >
-                        Order now
+                        Add to cart
                       </Button>
                     </Col>
                     <Col>
@@ -420,9 +431,9 @@ export default function App() {
                           marginTop: 24,
                           borderRadius: 8,
                         }}
-                        onClick={handleShowModalCreditCard}
+                        onClick={addToCart}
                       >
-                        Order now
+                        Add to cart
                       </Button>
                     </Col>
                     <Col>
@@ -446,7 +457,12 @@ export default function App() {
               focusTriggerAfterClose={false}
               destroyOnClose
             >
-              <h2 className="h2map">{pointName}</h2>
+              <h2
+                className="h2map"
+                style={{ fontSize: "2vw", padding: 0, margin: 0 }}
+              >
+                You are at the {currentMapPoint}
+              </h2>
               <div ref={boxRefMap}>
                 <div className="box">
                   <svg
@@ -462,18 +478,47 @@ export default function App() {
                   >
                     <polygon
                       id="shop1map"
-                      className="st0 open"
+                      className={`st0 open ${
+                        currentMapPoint === "Vlinkmart" ? "active" : ""
+                      }`}
                       points="329.1,175.8 406.2,131.3 354.2,101.3 277.2,145.8 	"
-                      onMouseEnter={() => handleHoverPointMap("Stote 1")}
-                      onClick={() => handleClickPointMap(3)}
+                      onMouseEnter={() => handleHoverPointMap("Vlinkmart")}
+                      onClick={() => handleClickPointMap(3, "Vlinkmart")}
                     />
+                    <text
+                      x="329"
+                      y="131"
+                      text-anchor="middle"
+                      fill="white"
+                      font-size="12"
+                      className={`text-polygon ${
+                        currentMapPoint === "Vlinkmart" ? "active" : ""
+                      }`}
+                    >
+                      Vlinkmart
+                    </text>
                     <polygon
                       id="shop2map"
-                      className="st0 open"
+                      className={`st0 open ${
+                        currentMapPoint === "Lobby" ? "active" : ""
+                      }`}
                       points="312.7,216.3 354.2,192.3 275.4,146.8 233.9,170.8 	"
                       onMouseEnter={() => handleHoverPointMap("Lobby")}
-                      onClick={() => handleClickPointMap(1)}
+                      onClick={() => handleClickPointMap(1, "Lobby")}
                     />
+                    <text
+                      x="312.7"
+                      y="192.3"
+                      text-anchor="middle"
+                      fill="white"
+                      font-size="12"
+                      className={`text-polygon ${
+                        currentMapPoint === "Lobby" ? "active" : ""
+                      }`}
+                    >
+                      Lobby
+                      <PushpinOutlined />
+                    </text>
                     <polygon
                       id="shop3map"
                       className="st0 "
@@ -481,11 +526,25 @@ export default function App() {
                     />
                     <polygon
                       id="shop4map"
-                      className="st0 open"
+                      className={`st0 open ${
+                        currentMapPoint === "Watch shop" ? "active" : ""
+                      }`}
                       points="356,191.3 395.8,168.3 370.7,153.8 330.8,176.8 	"
-                      onMouseEnter={() => handleHoverPointMap("Stote 2")}
-                      onClick={() => handleClickPointMap(2)}
+                      onMouseEnter={() => handleHoverPointMap("Watch shop")}
+                      onClick={() => handleClickPointMap(2, "Watch shop")}
                     />
+                    <text
+                      x="370"
+                      y="168"
+                      text-anchor="middle"
+                      fill="white"
+                      font-size="12"
+                      className={`text-polygon ${
+                        currentMapPoint === "Watch shop" ? "active" : ""
+                      }`}
+                    >
+                      Watch shop
+                    </text>
                     <polygon
                       id="shop5map "
                       className="st0"
@@ -693,6 +752,8 @@ export default function App() {
               started={started}
               onMenuClick={handleMenuClick}
               isModalOpenVideo={isModalOpenVideo}
+              isShowCart={isShowCart}
+              listCart={listCart}
             />
             <ModalPaymentCreditCard
               isVisible={isVisibleModalCreditCard}

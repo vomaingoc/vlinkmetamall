@@ -5,13 +5,21 @@ import {
   EnvironmentOutlined,
   CloseSquareOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import Sound from "components/Sound";
+import { ModelProcduct } from "models";
 export default function Footer(props: any) {
-  const { onMenuClick, loading, started, isModalOpenVideo } = props;
-  const [showCart, setShowCart] = useState(false);
+  const {
+    onMenuClick,
+    loading,
+    started,
+    isModalOpenVideo,
+    isShowCart,
+    listCart,
+  } = props;
+  const [showCart, setShowCart] = useState<Boolean>(isShowCart);
   const handleClickShowCart = () => {
     setShowCart((prev) => !prev);
   };
@@ -37,6 +45,15 @@ export default function Footer(props: any) {
 
     return () => ctx.revert();
   }, [loading]);
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    setShowCart(isShowCart);
+    let sum = listCart.reduce(function (prev: number, current: any) {
+      return prev + current.price2;
+    }, 0);
+    setTotal(sum);
+  }, [isShowCart, listCart]);
+
   return (
     <div className="footer">
       <Row className="row1">
@@ -80,7 +97,12 @@ export default function Footer(props: any) {
                 </Button>
               </Col>
               <Col>
-                <Badge count={1} size="small" status="default" offset={[0, 0]}>
+                <Badge
+                  count={listCart.length}
+                  size="small"
+                  status="default"
+                  offset={[0, 0]}
+                >
                   <Button
                     style={{
                       border: 0,
@@ -136,34 +158,24 @@ export default function Footer(props: any) {
       {showCart && (
         <div className="cart">
           <Row className="row2">
-            <Col md={4} sm={8} xs={24}>
-              <div className="item-product">
-                <Image
-                  src="/files/high-heels.png"
-                  alt=""
-                  preview={false}
-                  style={{ width: "100%" }}
-                />
-                <div className="title">D-Fame Pump </div>
-                <div className="price">$1,190.00</div>
-              </div>
-            </Col>
-            <Col md={4} sm={8} xs={24}>
-              <div className="item-product">
-                <Image
-                  src="/files/rolex1.png"
-                  alt=""
-                  preview={false}
-                  style={{ width: "100%" }}
-                />
-                <div className="title">Air-King</div>
-                <div className="price">$3,710.00</div>
-              </div>
-            </Col>
+            {listCart?.map((item: ModelProcduct, index: number) => (
+              <Col md={4} sm={8} xs={24} key={index}>
+                <div className="item-product">
+                  <Image
+                    src={item.imagePath}
+                    alt=""
+                    preview={false}
+                    style={{ width: "100%" }}
+                  />
+                  <div className="title">{item?.name}</div>
+                  <div className="price">${item.price2?.toFixed(2)}</div>
+                </div>
+              </Col>
+            ))}
           </Row>
           <Row className="row3" gutter={36}>
             <Col>
-              Total: <b>$4,990.00</b>
+              Total: <b>${total.toFixed(2)}</b>
             </Col>
             <Col>
               <Button

@@ -1,6 +1,6 @@
 import React from "react";
 import * as THREE from "three";
-
+import { Environment, MeshDistortMaterial } from "@react-three/drei";
 const SceneItem = ({
   texture,
   scene,

@@ -272,7 +272,7 @@ body > iframe {
   border-radius: 50%;
   -webkit-animation: pulse 1.5s infinite ease-out;
   animation: pulse 1.5s infinite ease-out;
-  background: #ff528f;
+  background: #9a0ff6;
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -311,13 +311,13 @@ body > iframe {
   fill: #fff;
 } */
 .icon-video .dot:before {
-  -webkit-animation: pulse2 1.5s infinite ease-out 0.3s;
-  animation: pulse2 1.5s2 infinite ease-out 0.3s;
+  -webkit-animation: pulse2 1.5s infinite ease-out 0.3s !important;
+  animation: pulse2 1.5s2 infinite ease-out 0.3s !important;
 }
 
 @-webkit-keyframes pulse {
   0% {
-    box-shadow: 0px 0px 0px 0px #ff528f;
+    box-shadow: 0px 0px 0px 0px #9a0ff6;
   }
   100% {
     box-shadow: 0px 0px 0px 7px rgba(52, 106, 180, 0);
@@ -325,7 +325,7 @@ body > iframe {
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0px 0px 0px 0px #ff528f;
+    box-shadow: 0px 0px 0px 0px #9a0ff6;
   }
   100% {
     box-shadow: 0px 0px 0px 7px rgba(52, 106, 180, 0);
@@ -336,7 +336,7 @@ body > iframe {
     box-shadow: 0px 0px 0px 0px #2edab7;
   }
   100% {
-    box-shadow: 0px 0px 0px 7px rgba(52, 106, 180, 0);
+    box-shadow: 0px 0px 0px 7px rgba(52, 180, 169, 0);
   }
 }
 @keyframes pulse2 {
@@ -344,38 +344,35 @@ body > iframe {
     box-shadow: 0px 0px 0px 0px #2edab7;
   }
   100% {
-    box-shadow: 0px 0px 0px 7px rgba(52, 106, 180, 0);
+    box-shadow: 0px 0px 0px 7px rgba(52, 178, 180, 0);
   }
 }
 
 polygon {
-  fill: #2edab7;
+  fill: #ebcafa;
   transition: all 0.3s;
   position: relative;
 }
 polygon.open {
-  fill: #04eb35;
+  fill: #ac49f8;
 }
 polygon.st0:hover {
-  fill: #f5646b;
+  fill: #3e29fe;
 }
-polygon.st0::after {
-  display: inline-block;
-  position: absolute;
-  transform: translateX(-50%) translateY(-50%);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  content: attr(id);
-  content: "demo";
-  z-index: 9;
-  color: #fff;
+polygon.st0.active {
+  fill: #ff04de;
 }
 .h2map {
   color: white;
 }
+.text-polygon {
+  fill: #fff !important;
+  pointer-events: none !important;
+}
+.text-polygon.active {
+  /* fill: rgb(250, 255, 200) !important; */
+}
+
 .ant-modal-map,
 .ant-modal-map .ant-modal-body {
   background-color: #000e4b;
@@ -500,8 +497,9 @@ polygon.st0::after {
   z-index: -1;
 }
 :root {
-  --clr-neon: hsl(317 100% 54%);
+  --clr-neon: #4d0ed3;
   --clr-bg: hsl(323 21% 16%);
+  --clr-text: #fff;
 }
 .neon-button {
   font-size: 4rem;
@@ -509,14 +507,15 @@ polygon.st0::after {
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  color: var(--clr-neon);
-  border: var(--clr-neon) 0.125em solid;
+  color: var(--clr-text);
+  border: var(--clr-text) 0.125em solid;
   padding: 0.25em 1em;
   border-radius: 0.25em;
-  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
+  text-shadow: 0 0 0.125em rgba(88, 33, 255, 0), 0 0 0.45em currentColor;
   box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
   position: relative;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .neon-button::before {
@@ -678,7 +677,7 @@ polygon.st0::after {
   font-weight: 700;
   letter-spacing: 2px;
   font-size: 85px;
-  color: var(--clr-neon);
+  color: var(--clr-text);
   animation: neon-purple 6s infinite;
   margin: 0;
   padding: 0;
@@ -698,7 +697,7 @@ h1.purple {
   72%,
   74%,
   100% {
-    text-shadow: var(--clr-bg) 0px 0px 12px, var(--clr-neon) 0px 0px 24px,
+    text-shadow: var(--clr-neon) 0px 0px 12px, var(--clr-neon) 0px 0px 24px,
       var(--clr-neon) 0px 0px 32px;
   }
 
@@ -720,4 +719,9 @@ h1.purple {
 .tool-right .ant-badge .ant-badge-count {
   color: #000e4b;
   top: 12px;
+}
+@media only screen and (max-width: 600px) {
+  .purple {
+    font-size: 45px;
+  }
 }
