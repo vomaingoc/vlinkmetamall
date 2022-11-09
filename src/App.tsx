@@ -20,11 +20,18 @@ import Footer from "components/Footer";
 import Loading from "components/Loading";
 import { gsap } from "gsap";
 import { products, hotspot, videos, productPicture } from "data";
-import { ModelPicture, ModelProcduct, ModelVideo } from "models";
+import {
+  ModelCreditCard,
+  ModelPicture,
+  ModelProcduct,
+  ModelVideo,
+} from "models";
 import ListVideo from "components/Videos";
 const Banner = lazy(() => import("components/Banner"));
 import VideoThree from "components/VideoThree";
 import ListPicture from "components/PictureItem";
+import ModalPaymentCreditCard from "components/ModalPaymentCreditCard";
+import ModalLogin from "components/ModalLogin";
 interface ModelScene {
   id: number;
   url: string;
@@ -36,8 +43,8 @@ export default function App() {
   const radiusDemo = dev ? 480 : 500;
 
   const [listSceneOfRoom] = useState<Array<ModelScene>>([
-    { id: 1, url: "https://i.ibb.co/GVcDGWC/sanh.jpg", radius: radiusDemo },
-    { id: 2, url: "https://i.ibb.co/JCvvdn9/rolex.jpg", radius: radiusDemo },
+    { id: 1, url: "https://i.ibb.co/8gts64P/loby.jpg", radius: radiusDemo },
+    { id: 2, url: "https://i.ibb.co/8sZ8TPH/rolex.jpg", radius: radiusDemo },
     { id: 3, url: "/files/store.jpg", radius: radiusDemo },
   ]);
   const [mysceneIndex, setMysceneIndex] = useState(0);
@@ -148,6 +155,10 @@ export default function App() {
   const handleMenuClick = (e: string) => {
     if (e === "MAP") {
       setIsModalOpenMap(true);
+    } else if (e === "PAYMENT") {
+      handleShowModalCreditCard();
+    } else if (e === "LOGIN") {
+      handleShowModalLogin();
     }
   };
 
@@ -184,6 +195,23 @@ export default function App() {
     setStarted(true);
     callLoading();
   };
+  const [isVisibleModalCreditCard, setIsVisibleModalCreditCard] =
+    useState(false);
+  const handleChangeModalCreditCard = (e: any) => {
+    setIsVisibleModalCreditCard(e.target.visible);
+  };
+  const handleShowModalCreditCard = () => {
+    setIsVisibleModalCreditCard(true);
+  };
+
+  const [isVisibleModalLogin, setIsVisibleModalLogin] = useState(false);
+  const handleChangeModalLogin = (e: any) => {
+    setIsVisibleModalLogin(e.target.visible);
+  };
+  const handleShowModalLogin = () => {
+    setIsVisibleModalLogin(true);
+  };
+  const handlePaymentByCreditCard = (values: ModelCreditCard) => {};
   return (
     <>
       {/* <VideoThree /> */}
@@ -641,6 +669,15 @@ export default function App() {
               </div>
             </Modal>
             <Footer loading={!loading} onMenuClick={handleMenuClick} />
+            <ModalPaymentCreditCard
+              isVisible={isVisibleModalCreditCard}
+              onChange={handleChangeModalCreditCard}
+              onSubmit={handlePaymentByCreditCard}
+            />
+            <ModalLogin
+              isVisible={isVisibleModalLogin}
+              onChange={handleChangeModalLogin}
+            />
           </>
         )}
       </Suspense>

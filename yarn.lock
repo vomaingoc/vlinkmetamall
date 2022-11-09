@@ -1837,6 +1837,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/cleave.js@^1.4.7":
+  "integrity" "sha512-0MatQhFMEsOWOjfY06z7Ez+84dWJFXWsqGRsZn+dxcZ8FqZbHftP4g4NIdpZmPm5I7RWmjDmrF5wtg99TVCgQA=="
+  "resolved" "https://registry.npmjs.org/@types/cleave.js/-/cleave.js-1.4.7.tgz"
+  "version" "1.4.7"
+  dependencies:
+    "@types/react" "*"
+
 "@types/eslint@^7.29.0":
   "integrity" "sha512-VNcvioYDH8/FxaeTKkM4/TiTwt6pBV9E3OfGmvaw8tPl0rrHCJ4Ll15HRT+pMiFAf/MLQvAzC+6RzUMEL9Ceng=="
   "resolved" "https://registry.npmjs.org/@types/eslint/-/eslint-7.29.0.tgz"
@@ -3582,6 +3589,11 @@
   "integrity" "sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A=="
   "resolved" "https://registry.npmjs.org/clean-stack/-/clean-stack-2.2.0.tgz"
   "version" "2.2.0"
+
+"cleave.js@^1.6.0":
+  "integrity" "sha512-ivqesy3j5hQVG3gywPfwKPbi/7ZSftY/UNp5uphnqjr25yI2CP8FS2ODQPzuLXXnNLi29e2+PgPkkiKUXLs/Nw=="
+  "resolved" "https://registry.npmjs.org/cleave.js/-/cleave.js-1.6.0.tgz"
+  "version" "1.6.0"
 
 "cliui@^5.0.0":
   "integrity" "sha512-PYeGSEmmHM6zvoef2w8TPzlrnNpXIjTipYK780YswmIP9vjxmd6Y2a3CB2Ks6/AU8NHjZugXvo8w3oWM2qnwXA=="

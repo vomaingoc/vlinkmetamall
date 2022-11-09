@@ -3,6 +3,7 @@ import {
   ShoppingOutlined,
   UserOutlined,
   EnvironmentOutlined,
+  CloseSquareOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
 import { gsap } from "gsap";
@@ -50,21 +51,6 @@ export default function Footer(props: any) {
                 />
               </div>
             </Col>
-            {/* <Col>
-              <Button type="link" className="btn-nav">
-                Home
-              </Button>
-              <Button type="link" className="btn-nav">
-                Products
-              </Button>
-              <Button
-                type="link"
-                className="btn-nav"
-                onClick={() => handleClick("MAP")}
-              >
-                Map
-              </Button>
-            </Col> */}
           </Row>
         </Col>
         <Col>
@@ -101,20 +87,39 @@ export default function Footer(props: any) {
                     <ShoppingOutlined />
                   </Button>
                 </Badge>
-
+              </Col>
+              <Col>
                 <Button
                   style={{
                     border: 0,
                     fontSize: "1.5em",
                     padding: 0,
-                    margin: "0 16px",
+                    marginRight: 24,
                   }}
                   size="large"
                   ghost
+                  onClick={() => handleClick("LOGIN")}
                 >
                   <UserOutlined />
                 </Button>
               </Col>
+              {showCart && (
+                <Col>
+                  <Button
+                    style={{
+                      border: 0,
+                      fontSize: "1.5em",
+                      padding: 0,
+                      marginRight: 24,
+                    }}
+                    size="large"
+                    ghost
+                    onClick={handleClickShowCart}
+                  >
+                    <CloseSquareOutlined />
+                  </Button>
+                </Col>
+              )}
             </Row>
           </div>
         </Col>
@@ -122,16 +127,28 @@ export default function Footer(props: any) {
       {showCart && (
         <div className="cart">
           <Row className="row2">
-            <Col span={4}>
+            <Col md={4} sm={8} xs={24}>
               <div className="item-product">
                 <Image
-                  src="https://media.dior.com/couture/ecommerce/media/catalog/product/1/d/1633627029_KCK337LRU_S09W_E02_GH.jpg"
+                  src="/files/high-heels.png"
                   alt=""
                   preview={false}
                   style={{ width: "100%" }}
                 />
-                <div className="title">Dior Vibe Sneaker</div>
+                <div className="title">D-Fame Pump </div>
                 <div className="price">$1,190.00</div>
+              </div>
+            </Col>
+            <Col md={4} sm={8} xs={24}>
+              <div className="item-product">
+                <Image
+                  src="/files/rolex1.png"
+                  alt=""
+                  preview={false}
+                  style={{ width: "100%" }}
+                />
+                <div className="title">Air-King</div>
+                <div className="price">$3,710.00</div>
               </div>
             </Col>
           </Row>
@@ -140,8 +157,13 @@ export default function Footer(props: any) {
               Total: <b>$4,990.00</b>
             </Col>
             <Col>
-              <Button type="primary" shape="round" size={"large"}>
-                PROCEED TO CHECKOUT
+              <Button
+                type="primary"
+                shape="round"
+                size={"large"}
+                onClick={() => handleClick("PAYMENT")}
+              >
+                PROCEED TO PAYMENT
               </Button>
             </Col>
           </Row>

@@ -28,3 +28,13 @@ export interface ModelPicture extends ModelProcduct {
   border_color_hex: string;
   rotation_y: number;
 }
+export interface ModelCreditCard {
+  cardNumber: string; //demo 4242 x 4
+  cardExpirationDate: string; //tương lai
+  cardCode: string; //pass là 123 hay 111 cũng đc
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  zip: string;
+}
