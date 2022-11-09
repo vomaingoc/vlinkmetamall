@@ -238,7 +238,7 @@ export default function App() {
               destroyOnClose
             >
               <Row gutter={24}>
-                <Col span={14}>
+                <Col md={14} sm={24} xs={24}>
                   <div className="content-view">
                     <div className="slider">
                       {product && (
@@ -255,7 +255,7 @@ export default function App() {
                     </div>
                   </div>
                 </Col>
-                <Col span={10}>
+                <Col md={10} sm={24} xs={24}>
                   <h1 className="name">{product?.name}</h1>
                   <p className="number">(Quantity 10 slots)</p>
                   <p className="price1">Price $898.75</p>
@@ -338,14 +338,14 @@ export default function App() {
               destroyOnClose
             >
               <Row gutter={24}>
-                <Col span={14}>
+                <Col md={14} sm={24} xs={24}>
                   <div className="content-view">
                     <div className="avatar">
                       <Image src={product?.imagePath} />
                     </div>
                   </div>
                 </Col>
-                <Col span={10}>
+                <Col md={10} sm={24} xs={24}>
                   <h1 className="name">{product?.name}</h1>
                   <p className="number">(Quantity 10 slots)</p>
                   <p className="price1">Price $898.75</p>
