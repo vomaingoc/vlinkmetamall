@@ -5,7 +5,7 @@ import {
   EnvironmentOutlined,
   CloseSquareOutlined,
 } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import Sound from "components/Sound";

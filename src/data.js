@@ -78,14 +78,24 @@ export const videos = [
     position: [-480.24355537512946, -125.12861426650723, -53.53573755614833],
     sceneId: 1,
     name: "TVC Vlinkmart",
+    // imagePath: '',
+    rotation_y: 1.5,
+    size: [160, 90],
+    scale: 1,
+    depth: 80,
   },
 
   {
     id: 2,
     url: "https://www.youtube.com/watch?v=_jd4Qa9ZNLs",
-    position: [-343.56577758926807, -16.590893388355482, -361.5069484914625],
+    position: [-330.56577758926807, -18.590893388355482, -361.5069484914625],
     sceneId: 3,
     name: "TVC Vlinkmart",
+    imagePath: "/files/video-thumb.jpg",
+    rotation_y: 0.5,
+    size: [160, 90],
+    scale: 0.6,
+    depth: 80,
   },
 ];
 

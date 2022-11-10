@@ -40,7 +40,7 @@ interface ModelScene {
 }
 
 export default function App() {
-  const dev = 1;
+  const dev = 0;
   const radiusDemo = dev ? 480 : 500;
 
   const [listSceneOfRoom] = useState<Array<ModelScene>>([

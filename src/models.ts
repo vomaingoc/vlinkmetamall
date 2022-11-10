@@ -4,6 +4,11 @@ export interface ModelVideo {
   position: any;
   sceneId: number;
   name: string;
+  imagePath?: string;
+  rotation_y?: number;
+  size?: Array<number>;
+  scale?: number;
+  depth?: number;
 }
 export interface ModelProcduct {
   id: number;
