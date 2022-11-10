@@ -72,18 +72,18 @@ export const hotspot = [
 ];
 
 export const videos = [
-  {
-    id: 1,
-    url: "https://www.youtube.com/watch?v=_jd4Qa9ZNLs",
-    position: [-480.24355537512946, -125.12861426650723, -53.53573755614833],
-    sceneId: 1,
-    name: "TVC Vlinkmart",
-    // imagePath: '',
-    rotation_y: 1.5,
-    size: [160, 90],
-    scale: 1,
-    depth: 80,
-  },
+  // {
+  //   id: 1,
+  //   url: "https://www.youtube.com/watch?v=_jd4Qa9ZNLs",
+  //   position: [-480.24355537512946, -125.12861426650723, -53.53573755614833],
+  //   sceneId: 1,
+  //   name: "TVC Vlinkmart",
+  //   // imagePath: '',
+  //   rotation_y: 1.5,
+  //   size: [160, 90],
+  //   scale: 1,
+  //   depth: 80,
+  // },
 
   {
     id: 2,

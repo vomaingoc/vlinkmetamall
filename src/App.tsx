@@ -44,8 +44,8 @@ export default function App() {
   const radiusDemo = dev ? 480 : 500;
 
   const [listSceneOfRoom] = useState<Array<ModelScene>>([
-    { id: 1, url: "https://i.ibb.co/R6KvpWP/loby5.jpg", radius: radiusDemo },
-    { id: 2, url: "https://i.ibb.co/8sZ8TPH/rolex.jpg", radius: radiusDemo },
+    { id: 1, url: "/files/loby5.jpg", radius: radiusDemo },
+    { id: 2, url: "/files/rolex.jpg", radius: radiusDemo },
     { id: 3, url: "/files/store.jpg", radius: radiusDemo },
   ]);
   const [mysceneIndex, setMysceneIndex] = useState(0);
