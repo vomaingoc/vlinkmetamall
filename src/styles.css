@@ -62,11 +62,6 @@ body,
 .icon-hotspot:hover {
   transform: rotate3d(4, 0, 0, 50deg) scale(1.4);
 }
-.icon-product2 {
-  border-color: red;
-  border-width: 2px;
-  color: red;
-}
 .icon-product2-2 {
   left: -10px;
 }
